@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+    <a><button type="button" class="bg-green-400 text-white m-5 p-3 rounded-xl font-bold">Ajouter</button></a>
+    <table class="w-full h-full">
+        <tr class="bg-green-200">
+            <th class="p-3 text-center">Name</th>
+            <th class="p-3 text-center">Price</th>
+            <th class="p-3 text-center">Image</th>
+            <th class="p-3 text-center">Calories</th>
+            <th class="p-3 text-center">Protein</th>
+            <th class="p-3 text-center">Fat</th>
+            <th class="p-3 text-center">Actions</th>
+        </tr>
+        {% for el in food %}
+            <tr class="border-2 border-green-200">
+                <td class="p-3 text-center"><a href="{{ path('show_food', {'id': el.id}) }}">{{ el.name }}</a></td>
+                <td class="p-3 text-center">{{ el.price }}</td>
+                <td class="p-3 flex justify-center"><img src="{{ asset('images/food/'~el.image ) }}" alt="{{ el.name }}" style="width: 150px"/></td>
+                <td class="p-3 text-center">{{ el.calories }}</td>
+                <td class="p-3 text-center">{{ el.protein }}</td>
+                <td class="p-3 text-center">{{ el.fat }}</td>
+                <td class="p-3 text-center">
+                    <a><button type="button" class="bg-yellow-400 rounded-xl p-3 mx-2 text-white font-bold">Modifier</button></a>
+                    <a><button type="button" class="bg-red-400 rounded-xl p-3 mx-2 text-white font-bold">Supprimer</button></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
