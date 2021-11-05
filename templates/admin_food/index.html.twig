@@ -3,7 +3,12 @@
 {% block title %}Admin{% endblock %}
 
 {% block body %}
-    <a><button type="button" class="bg-green-400 text-white m-5 p-3 rounded-xl font-bold">Ajouter</button></a>
+    {% for message in app.flashes('success') %}
+        <div class="absolute top-0 bg-blue-400">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <a href="{{ path('admin_food_add') }}"><button type="button" class="bg-green-400 text-white m-5 p-3 rounded-xl font-bold">Ajouter</button></a>
     <table class="w-full h-full">
         <tr class="bg-green-200">
             <th class="p-3 text-center">Name</th>
@@ -23,8 +28,12 @@
                 <td class="p-3 text-center">{{ el.protein }}</td>
                 <td class="p-3 text-center">{{ el.fat }}</td>
                 <td class="p-3 text-center">
-                    <a><button type="button" class="bg-yellow-400 rounded-xl p-3 mx-2 text-white font-bold">Modifier</button></a>
-                    <a><button type="button" class="bg-red-400 rounded-xl p-3 mx-2 text-white font-bold">Supprimer</button></a>
+                    <a href="{{ path('admin_food_edit', {'id': el.id}) }}"><button type="button" class="bg-yellow-400 rounded-xl p-3 mx-2 text-white font-bold">Modifier</button></a>
+                    <form style="display:inline-block;" action="{{ path('admin_food_delete' , {'id': el.id}) }}" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="_token" value="{{csrf_token('DEL'~ el.id)}}">
+                        <input type="submit" class="bg-red-400 rounded-xl p-3 mx-2 text-white font-bold" value="Supprimer" onsubmit="return confirm('confirmez la suppression ?')">
+                    </form>
                 </td>
             </tr>
         {% endfor %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ food.name }}{% endblock %}
+{% block body %}
+    {{ form_start(form) }}
+    <div class="w-1/2 mx-auto bg-green-50 flex flex-col justify-center items-center mt-8 p-4 text-xl">
+        <div>{{ form_row(form.name, { 'attr': { 'class': 'border-2 border-green-600' } }) }}</div>
+        <div>{{ form_row(form.price, { 'attr': { 'class': 'border-2 border-green-600' } }) }}</div>
+        <div>{{ form_row(form.calories, { 'attr': { 'class': 'border-2 border-green-600' } }) }}</div>
+        <div>{{ form_row(form.protein, { 'attr': { 'class': 'border-2 border-green-600' } }) }}</div>
+        <div>{{ form_row(form.fat, { 'attr': { 'class': 'border-2 border-green-600' } }) }}</div>
+        <div>{{ form_row(form.uploadedImage, { 'attr': { 'class': 'border-2 border-green-600' } }) }}</div>
+
+        <input type="submit" class="bg-green-700 text-white p-3 mt-3">
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
