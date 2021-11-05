@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+    <div class="flex justify-center items-center mt-10">
+        <form action="{{ path('connexion') }}" method="post">
+            <div class="grid grid-cols-2 mb-3"><label for="_username" class="text-xl font-bold text-green-500 text-right">Login :</label><input type="text" required name="_username" class="border border-green-500 p-2 mx-2"/></div>
+            <div class="grid grid-cols-2"><label for="_password" class="text-xl font-bold text-green-500 text-right">Password :</label><input type="password" required name="_password" class="border border-green-500 p-2 mx-2"/></div>
+            <input type="submit" value="Connexion" class="p-3 text-white font-bold bg-green-500 m-2 mx-auto">
+        </form>
+    </div>
+{% endblock %}

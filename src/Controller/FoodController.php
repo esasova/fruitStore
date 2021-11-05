@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FoodController extends AbstractController
 {
     /**
-     * @Route("/food", name="food")
+     * @Route("/", name="food")
      */
     public function index(FoodRepository $repository): Response
     {
